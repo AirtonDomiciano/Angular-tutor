@@ -24,6 +24,5 @@ import { HeroesModule } from './heroes/heroes.module';
 
   providers: [],
   bootstrap: [AppComponent],
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
-})
+  })
 export class AppModule { }

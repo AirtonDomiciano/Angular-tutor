@@ -2,7 +2,7 @@ import { HeroesComponent } from './heroes.component';
 
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 
 
 
@@ -12,6 +12,7 @@ import { NgModule } from '@angular/core';
     CommonModule,
     FormsModule,
   ],
-  schemas: []
+  exports: [HeroesComponent],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class HeroesModule { }
