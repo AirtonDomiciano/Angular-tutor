@@ -1,5 +1,5 @@
 import { HEROES } from './../mock-heroes';
-import { HeroesInterface } from './heroes.interface';
+import { HeroesInterface } from '../interfaces/heroes.interface';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
