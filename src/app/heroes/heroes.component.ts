@@ -3,13 +3,15 @@ import { HeroesInterface } from '../interfaces/heroes.interface';
 import { Component, OnInit } from '@angular/core';
 import { HeroesService } from './heroes.service';
 import { Subscription } from 'rxjs';
+import { BaseComponentDirective } from '../abstract/base-component';
+
 
 @Component({
   selector: 'app-heroes',
   templateUrl: './heroes.component.html',
   styleUrls: ['./heroes.component.css']
 })
-export class HeroesComponent implements OnInit {
+export class HeroesComponent extends BaseComponentDirective implements OnInit {
 
   subscription: Subscription
 
@@ -18,16 +20,18 @@ export class HeroesComponent implements OnInit {
 
   constructor(
     public http: HeroesService,
-    public httpMessage: MessageService
-  ) { }
+    public httpMessage: MessageService,
+  ) { 
+    super()
+  }
 
   ngOnInit(): void {
     this.getHeroes()
   }
 
   getHeroes(): void {
-   this.subscription = this.http.getHeroes()
-        .subscribe(heroes => console.log(this.heroes = heroes));
+   this.addSubscriptions(this.http.getHeroes()
+      .subscribe(heroes => console.log(this.heroes = heroes)));
   }
 
   onSelect(hero: HeroesInterface): void {
