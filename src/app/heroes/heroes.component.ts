@@ -36,7 +36,9 @@ export class HeroesComponent extends BaseComponentDirective implements OnInit {
 
   onSelect(hero: HeroesInterface): void {
     this.selectedHero = hero;
-    this.httpMessage.add(`HeroesComponent: Selected hero id=${hero.id}`);
+    this.httpMessage.add(
+      `Selected hero ${hero.id}-${hero.name} `
+    );
   }
 
 }
