@@ -35,7 +35,6 @@
   .heroes .badge {
     display: inline-block;
     font-size: small;
-    color: white;
     background-color:#41566d;
     line-height: 1em;
     position: relative;

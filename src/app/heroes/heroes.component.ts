@@ -1,7 +1,7 @@
 import { MessageService } from './../messages/message.service';
 import { HeroesInterface } from '../interfaces/heroes.interface';
 import { Component, OnInit } from '@angular/core';
-import { HeroesService } from './heroes.service';
+import { HeroService } from '../heroService/hero.service';
 import { Subscription } from 'rxjs';
 import { BaseComponentDirective } from '../abstract/base-component';
 
@@ -19,7 +19,7 @@ export class HeroesComponent extends BaseComponentDirective implements OnInit {
   heroes: HeroesInterface[] = [];
 
   constructor(
-    public http: HeroesService,
+    public http: HeroService,
     public httpMessage: MessageService,
   ) { 
     super()
@@ -34,11 +34,11 @@ export class HeroesComponent extends BaseComponentDirective implements OnInit {
       .subscribe(heroes => console.log(this.heroes = heroes)));
   }
 
-  onSelect(hero: HeroesInterface): void {
-    this.selectedHero = hero;
-    this.httpMessage.add(
-      `Selected hero ${hero.id}-${hero.name} `
-    );
-  }
+  // onSelect(hero: HeroesInterface): void {
+  //   this.selectedHero = hero;
+  //   this.httpMessage.add(
+  //     `Selected hero ${hero.id}-${hero.name} `
+  //   );
+  // }
 
 }

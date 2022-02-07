@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { HeroesComponent } from './heroes.component';
 
 import { CommonModule } from '@angular/common';
@@ -11,6 +12,7 @@ import { HeroDetailModule } from '../hero-detail/hero-detail.module';
   declarations: [HeroesComponent],
   imports: [
     CommonModule,
+    RouterModule,
     FormsModule,
     HeroDetailModule
   ],

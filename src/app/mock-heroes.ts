@@ -1,6 +1,5 @@
 import { HeroesInterface } from "./interfaces/heroes.interface";
 
-
 export const HEROES: HeroesInterface[] = [
   { id: 11, name: 'Dr Nice' },
   { id: 12, name: 'Narco' },
