@@ -21,8 +21,13 @@ export class HeroService {
     this.messageService.add(`HeroService: ${message}`);
   }
 
+  // getHeroes(): Observable<HeroesInterface[]> {
+  //   return this.http.get<HeroesInterface[]>(this.heroesUrl);
+  // }
+  
   getHeroes(): Observable<HeroesInterface[]> {
-    return this.http.get<HeroesInterface[]>(this.heroesUrl);
+    const heroes = of(HEROES);
+    return heroes;
   }
 
   getHero(id: number): Observable<HeroesInterface> {

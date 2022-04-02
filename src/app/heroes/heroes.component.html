@@ -1,23 +1,49 @@
 <h2>My Heroes</h2>
 
-<!-- MODO antigo -->
-<!-- <ul class="heroes">
-  <li *ngFor="let hero of heroes"
-    [class.selected]="hero === selectedHero"
-    (click)="onSelect(hero)">
-    <span class="badge">
-      {{hero.id}}
-    </span>
-    <span class="p-heroes align-items-center">
-      {{hero.name}}
-    </span>
-  </li>
-</ul> -->
+<div class="container" *ngIf="heroes.length > 0">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Title</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        [ngClass]="{ 'text-danger': odd, 'text-primary': even }"
+        *ngFor="
+          let obj of heroes | slice: startIndex:endIndex;
+          let odd = odd;
+          let even = even
+        "
+      >
+        <td>{{ obj.id }}</td>
+        <td>{{ obj.name }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <ul class="pagination">
+    <li class="page-item">
+      <a [hidden]="endIndex <= 5 || endIndex == heroes.length" (click)="prevIndex(heroes.length)" role="button" aria-disabled="true" class="page-link" 
+        >Previous</a
+      >
+    </li>
+    <li
+      class="page-item"
+      *ngFor="let i of getArrayLenght(heroes.length); let n = index"
+    >
+      <a class="page-link" (click)="getIndex(n)">{{ n + 1 }}</a>
+    </li>
+    <li class="page-item">
+      <a [hidden]="endIndex >= heroes.length" class="page-link" (click)="nextIndex(heroes.length)" role="button" aria-disabled="true">Next</a>
+    </li>
+  </ul>
+</div>
 
-<ul class="heroes">
+<!-- <ul class="heroes">
   <li *ngFor="let hero of heroes">
     <a routerLink="/detail/{{hero.id}}">
       <span class="badge">{{hero.id}}</span> {{hero.name}}
     </a>
   </li>
-</ul>
+</ul> -->

@@ -1,8 +1,8 @@
-import { MessageService } from './../messages/message.service';
-import { HeroesInterface } from '../interfaces/heroes.interface';
 import { Component, OnInit } from '@angular/core';
-import { HeroService } from '../heroService/hero.service';
 import { Subscription } from 'rxjs';
+import { HeroService } from 'src/app/heroService/hero.service';
+import { HeroesInterface } from 'src/app/interfaces/heroes.interface';
+import { MessageService } from 'src/app/messages/message.service';
 import { BaseComponentDirective } from '../abstract/base-component';
 
 
@@ -14,6 +14,9 @@ import { BaseComponentDirective } from '../abstract/base-component';
 export class HeroesComponent extends BaseComponentDirective implements OnInit {
 
   subscription: Subscription
+  startIndex = 0;
+  endIndex = 5;
+  getArrayList = []
 
   selectedHero: HeroesInterface;
   heroes: HeroesInterface[] = [];
@@ -40,5 +43,38 @@ export class HeroesComponent extends BaseComponentDirective implements OnInit {
   //     `Selected hero ${hero.id}-${hero.name} `
   //   );
   // }
+
+  getIndex(pageIndex) {
+    this.startIndex = pageIndex * 5;
+    this.endIndex = this.startIndex + 5;
+    console.log(this.startIndex);
+  }
+
+  prevIndex(length) {
+    this.endIndex -= 1;
+    console.log(this.startIndex);
+  }
+
+  nextIndex(endIndex) {
+    this.endIndex += 1;
+    console.log(this.endIndex);
+  }
+
+  getArrayLenght(length) {
+    if (!length){
+      return []
+    }
+
+    if (length <= 5) { 
+      this.getArrayList =  [];
+    } else if (length <= 50) {
+      this.getArrayList =  new Array(Math.trunc(length / 5))
+    } else if (length <= 100) {
+      this.getArrayList = new Array(Math.trunc(length / 10));
+    }
+        
+    return this.getArrayList
+    
+  }
 
 }
