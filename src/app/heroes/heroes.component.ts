@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { HeroService } from 'src/app/heroService/hero.service';
 import { HeroesInterface } from 'src/app/interfaces/heroes.interface';
@@ -24,6 +25,7 @@ export class HeroesComponent extends BaseComponentDirective implements OnInit {
   constructor(
     public http: HeroService,
     public httpMessage: MessageService,
+    public router: Router
   ) { 
     super()
   }
@@ -37,12 +39,9 @@ export class HeroesComponent extends BaseComponentDirective implements OnInit {
       .subscribe(heroes => console.log(this.heroes = heroes)));
   }
 
-  // onSelect(hero: HeroesInterface): void {
-  //   this.selectedHero = hero;
-  //   this.httpMessage.add(
-  //     `Selected hero ${hero.id}-${hero.name} `
-  //   );
-  // }
+  onSelect(hero: HeroesInterface): void {
+    this.router.navigate([`detail/${hero.id}`]);
+  }
 
   getIndex(pageIndex) {
     this.startIndex = pageIndex * 5;

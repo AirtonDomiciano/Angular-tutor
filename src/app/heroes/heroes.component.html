@@ -16,6 +16,7 @@
           let odd = odd;
           let even = even
         "
+        (click)="onSelect(obj)"
       >
         <td>{{ obj.id }}</td>
         <td>{{ obj.name }}</td>
@@ -39,11 +40,3 @@
     </li>
   </ul>
 </div>
-
-<!-- <ul class="heroes">
-  <li *ngFor="let hero of heroes">
-    <a routerLink="/detail/{{hero.id}}">
-      <span class="badge">{{hero.id}}</span> {{hero.name}}
-    </a>
-  </li>
-</ul> -->
