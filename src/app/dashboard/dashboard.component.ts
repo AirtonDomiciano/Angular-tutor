@@ -1,6 +1,6 @@
 import { HeroesInterface } from './../interfaces/heroes.interface';
 import { Component, OnInit } from '@angular/core';
-import { HeroService } from '../heroService/hero.service';
+import { HeroService } from '../heroes/heroes.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,9 +17,10 @@ export class DashboardComponent implements OnInit {
     this.getHeroes();
   }
 
-  getHeroes(): void {
-    this.http.getHeroes()
-      .subscribe(heroes => this.heroes = heroes.slice(1, 5));
+  async getHeroes(): Promise<void> {
+    this.heroes = await this.http.getHeroes().then((el) => {
+     return el.slice(0,5);
+    });
   }
 
 }

@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { HeroService } from 'src/app/heroService/hero.service';
+import { HeroService } from 'src/app/heroes/heroes.service';
 import { HeroesInterface } from 'src/app/interfaces/heroes.interface';
 import { MessageService } from 'src/app/messages/message.service';
-import { BaseComponentDirective } from '../abstract/base-component';
 
 
 @Component({
@@ -12,7 +11,7 @@ import { BaseComponentDirective } from '../abstract/base-component';
   templateUrl: './heroes.component.html',
   styleUrls: ['./heroes.component.css']
 })
-export class HeroesComponent extends BaseComponentDirective implements OnInit {
+export class HeroesComponent implements OnInit {
 
   subscription: Subscription
   startIndex = 0;
@@ -26,17 +25,14 @@ export class HeroesComponent extends BaseComponentDirective implements OnInit {
     public http: HeroService,
     public httpMessage: MessageService,
     public router: Router
-  ) { 
-    super()
-  }
+  ) {}
 
   ngOnInit(): void {
     this.getHeroes()
   }
 
-  getHeroes(): void {
-   this.addSubscriptions(this.http.getHeroes()
-      .subscribe(heroes => console.log(this.heroes = heroes)));
+  async getHeroes(): Promise<void> {
+   this.heroes = await this.http.getHeroes()
   }
 
   onSelect(hero: HeroesInterface): void {

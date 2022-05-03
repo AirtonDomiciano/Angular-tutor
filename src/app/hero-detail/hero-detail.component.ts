@@ -3,7 +3,7 @@ import { HeroesInterface } from '../interfaces/heroes.interface';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { HeroService } from '../heroService/hero.service';
+import { HeroService } from '../heroes/heroes.service';
 @Component({
   selector: 'app-hero-detail',
   templateUrl: './hero-detail.component.html',
